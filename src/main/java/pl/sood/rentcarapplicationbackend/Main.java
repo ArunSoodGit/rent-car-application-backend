@@ -12,7 +12,7 @@ public class Main {
 
     @Autowired
     public Main(CarMarkModelRepo carMarkModelRepo, CarRepo carRepo, AppUserRepo appUserRepo,
-                CarClassRepo carClassRepo, RentalRepo rentalRepo, EmployeeRepo employeeRepo) {
+                CarClassRepo carClassRepo, RentalRepo rentalRepo, EmployeeRepo employeeRepo, CustomerRepo customerRepo) {
         ////////////////////////////////////////////////
         CarClass carClassA = new CarClass("A", 79, 560);
         carClassRepo.save(carClassA);
@@ -46,10 +46,14 @@ public class Main {
         ////////////////////////////////////////////////
         Employee employeeArun = new Employee("Arun", "Sood", 4200, 576015420);
         employeeRepo.save(employeeArun);
+        ////////////////////////////////////////////////
+        Customer customer = new Customer("123j123jb321","Bartosz","Kwec","Harcerska 10","Sosnowiec",879652430,"bartosz.kwec@o2.pl");
 
+        customerRepo.save(customer);
         Rental rental = new Rental(new Date(2020 - 1900, 4, 22), new Date(2020 - 1900, 4, 29));
         rental.setCar(car);
         rental.setEmployee(employeeArun);
+        rental.setCustomer(customer);
         rentalRepo.save(rental);
     }
 }

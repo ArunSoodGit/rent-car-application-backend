@@ -19,6 +19,16 @@ public class Rental {
     private Car car;
     @ManyToOne
     private Employee employee;
+    @ManyToOne
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public Car getCar() {
         return car;
