@@ -28,6 +28,16 @@ public class Car {
     private char isAvailable;
     @Column(name = "rok_produkcji")
     private Date dateOfProduction;
+    @Column(name = "ścieżk_do_zdjęcia")
+    private String imagePath;
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     @ManyToOne
     private CarMarkModel carMarkModel;
@@ -58,7 +68,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(String vin, String registrationNumber, int mileage, String color, int engineCapacity, char review, char isAvailable, Date dateOfProduction) {
+    public Car(String vin, String registrationNumber, int mileage, String color, int engineCapacity, char review, char isAvailable, Date dateOfProduction, String imagePath) {
         this.vin = vin;
         this.mileage = mileage;
         this.color = color;
@@ -67,6 +77,7 @@ public class Car {
         this.isAvailable = isAvailable;
         this.dateOfProduction = dateOfProduction;
         this.registrationNumber = registrationNumber;
+        this.imagePath = imagePath;
     }
 
 
