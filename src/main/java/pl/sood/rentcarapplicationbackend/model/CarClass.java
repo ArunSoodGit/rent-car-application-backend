@@ -14,7 +14,7 @@ public class CarClass {
     private int deposit;
 
 
-    @OneToMany(mappedBy = "carClass")
+    @OneToMany(mappedBy = "carClass",cascade = CascadeType.ALL)
     Set<CarMarkModel> carMarkModels;
 
     public CarClass(String className, int pricePerNight, int deposit) {
@@ -28,6 +28,15 @@ public class CarClass {
 
     public String getClassName() {
         return className;
+    }
+
+    @Override
+    public String toString() {
+        return "CarClass{" +
+                "className='" + className + '\'' +
+                ", pricePerNight=" + pricePerNight +
+                ", deposit=" + deposit +
+                '}';
     }
 
     public void setClassName(String className) {

@@ -16,7 +16,7 @@ public class CarMarkModel {
     @Column(name = "model")
     private String model;
 
-    @OneToMany(mappedBy = "carMarkModel")
+    @OneToMany(mappedBy = "carMarkModel", cascade = CascadeType.ALL)
     private Set<Car> cars;
 
 
@@ -35,6 +35,17 @@ public class CarMarkModel {
 
         this.mark = mark;
         this.model = model;
+    }
+
+    @Override
+    public String toString() {
+        return "CarMarkModel{" +
+                "id=" + id +
+                ", mark='" + mark + '\'' +
+                ", model='" + model + '\'' +
+
+                ", carClass=" + carClass +
+                '}';
     }
 
     public CarMarkModel() {

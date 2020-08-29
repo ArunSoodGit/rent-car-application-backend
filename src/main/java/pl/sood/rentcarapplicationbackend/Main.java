@@ -14,11 +14,20 @@ public class Main {
     public Main(CarMarkModelRepo carMarkModelRepo, CarRepo carRepo, AppUserRepo appUserRepo,
                 CarClassRepo carClassRepo, RentalRepo rentalRepo, EmployeeRepo employeeRepo, CustomerRepo customerRepo) {
         ////////////////////////////////////////////////
-        CarClass carClassC = new CarClass("C", 239, 1900);
-        carClassRepo.save(carClassC);
+
+        CarClass carClassA = new CarClass("A", 79, 950);
+        carClassRepo.save(carClassA);
 
         CarClass carClassB = new CarClass("B", 179, 1560);
         carClassRepo.save(carClassB);
+
+
+        CarClass carClassC = new CarClass("C", 239, 1900);
+        carClassRepo.save(carClassC);
+
+        CarClass carClassD = new CarClass("D", 329, 2400);
+        carClassRepo.save(carClassD);
+
 
         ////////////////////////////////////////////////
         CarMarkModel carMarkModel = new CarMarkModel("Seat", "Ibiza");
@@ -31,11 +40,11 @@ public class Main {
 
         ////////////////////////////////////////////////
 
-        Car car = new Car("VNN978SD9", "SK182PH", 12000, "white", 1500, 'T', 'T', new Date(2019 - 1900, 2, 23),"https://raw.githubusercontent.com/ArunSoodGit/rent-car/master/src/assets/img/ibiza.png");
+        Car car = new Car("VNN978SD9", "SK182PH", 12000, "white", 1500, "Tak", "dostępny", new Date(2019 - 1900, 2, 23),"https://raw.githubusercontent.com/ArunSoodGit/rent-car/master/src/assets/img/ibiza.png");
         car.setCarMarkModel(carMarkModel);
         carRepo.save(car);
 
-        Car car2 = new Car("VNN9DSD324", "SK34322", 3430, "red", 1300, 'T', 'T', new Date(2012 - 1900, 4, 22),"https://raw.githubusercontent.com/ArunSoodGit/rent-car/master/src/assets/img/megane.png");
+        Car car2 = new Car("VNN9DSD324", "SK34322", 3430, "red", 1300, "Tak", "wynajęty", new Date(2012 - 1900, 4, 22),"https://raw.githubusercontent.com/ArunSoodGit/rent-car/master/src/assets/img/megane.png");
         car2.setCarMarkModel(carMarkModel2);
         carRepo.save(car2);
 

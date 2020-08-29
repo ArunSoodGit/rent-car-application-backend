@@ -23,9 +23,9 @@ public class Car {
     @Column(name = "pojemność_silnika")
     private int engineCapacity;
     @Column(name = "przegląd")
-    private char review;
+    private String review;
     @Column(name = "czy_dostępny")
-    private char isAvailable;
+    private String isAvailable;
     @Column(name = "rok_produkcji")
     private Date dateOfProduction;
     @Column(name = "ścieżk_do_zdjęcia")
@@ -42,7 +42,7 @@ public class Car {
     @ManyToOne
     private CarMarkModel carMarkModel;
 
-    @OneToMany(mappedBy = "car")
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     Set<Rental> rentals;
 
     public String getRegistrationNumber() {
@@ -68,7 +68,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(String vin, String registrationNumber, int mileage, String color, int engineCapacity, char review, char isAvailable, Date dateOfProduction, String imagePath) {
+    public Car(String vin, String registrationNumber, int mileage, String color, int engineCapacity, String review, String isAvailable, Date dateOfProduction, String imagePath) {
         this.vin = vin;
         this.mileage = mileage;
         this.color = color;
@@ -80,7 +80,21 @@ public class Car {
         this.imagePath = imagePath;
     }
 
-
+    @Override
+    public String toString() {
+        return "Car{" +
+                "vin='" + vin + '\'' +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                ", mileage=" + mileage +
+                ", color='" + color + '\'' +
+                ", engineCapacity=" + engineCapacity +
+                ", review='" + review + '\'' +
+                ", isAvailable='" + isAvailable + '\'' +
+                ", dateOfProduction=" + dateOfProduction +
+                ", imagePath='" + imagePath + '\'' +
+                ", carMarkModel=" + carMarkModel +
+                '}';
+    }
 
     public String getVin() {
         return vin;
@@ -114,19 +128,19 @@ public class Car {
         this.engineCapacity = engineCapacity;
     }
 
-    public char getReview() {
+    public String getReview() {
         return review;
     }
 
-    public void setReview(char review) {
+    public void setReview(String review) {
         this.review = review;
     }
 
-    public char getIsAvailable() {
+    public String getIsAvailable() {
         return isAvailable;
     }
 
-    public void setIsAvailable(char isAvailable) {
+    public void setIsAvailable(String isAvailable) {
         this.isAvailable = isAvailable;
     }
 
