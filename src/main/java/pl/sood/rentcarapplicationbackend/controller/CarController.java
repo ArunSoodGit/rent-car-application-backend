@@ -58,4 +58,11 @@ public class CarController {
         carService.addCar(car);
         return "test";
     }
+
+    @PutMapping("/update-car")
+    public String updateCar(@RequestBody Car car) {
+
+        carService.addCar(car);
+        return "test";
+    }
 }
