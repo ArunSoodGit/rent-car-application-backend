@@ -21,7 +21,7 @@ public class CarController {
     private final CarRepo carRepo;
     private final CarClassRepo carClassRepo;
     private final CarMarkModelRepo carMarkModelRepo;
-    private CarService carService;
+    private final CarService carService;
 
     @Autowired
     public CarController(CarRepo carRepo, CarClassRepo carClassRepo, CarMarkModelRepo carMarkModelRepo, CarService carService) {
@@ -63,6 +63,12 @@ public class CarController {
     public String updateCar(@RequestBody Car car) {
 
         carService.addCar(car);
+        return "test";
+    }
+    @DeleteMapping("/delete-car/{vin}")
+    public String deleteCar(@PathVariable String vin) {
+
+        carService.delete(vin);
         return "test";
     }
 }

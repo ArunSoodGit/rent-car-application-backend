@@ -42,7 +42,7 @@ public class CarService {
 
     }
 
-    public void updateCar(Car car){
-
+    public void delete(String vin) {
+        carRepo.deleteById(vin);
     }
 }

@@ -23,10 +23,10 @@ import pl.sood.rentcarapplicationbackend.service.UserDetailsServiceImpl;
 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private AppUserRepo appUserRepo;
+    private final AppUserRepo appUserRepo;
 
 
-    private UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     public WebSecurityConfig(UserDetailsServiceImpl userDetailsService, AppUserRepo appUserRepo) {
