@@ -1,6 +1,7 @@
 package pl.sood.rentcarapplicationbackend.controller;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.sood.rentcarapplicationbackend.model.Car;
@@ -16,20 +17,14 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+
 public class CarController {
 
     private final CarRepo carRepo;
-    private final CarClassRepo carClassRepo;
-    private final CarMarkModelRepo carMarkModelRepo;
+
     private final CarService carService;
 
-    @Autowired
-    public CarController(CarRepo carRepo, CarClassRepo carClassRepo, CarMarkModelRepo carMarkModelRepo, CarService carService) {
-        this.carRepo = carRepo;
-        this.carClassRepo = carClassRepo;
-        this.carMarkModelRepo = carMarkModelRepo;
-        this.carService = carService;
-    }
 
     @GetMapping("/cars")
     public List<Car> getAllCars() {
@@ -41,15 +36,9 @@ public class CarController {
         return carRepo.findAll().stream().filter(car -> (car.getIsAvailable()).equals("dostępny")).collect(Collectors.toList());
     }
 
-    @GetMapping("/marks")
-    public List<CarMarkModel> getAllMarks() {
-        return carMarkModelRepo.findAll();
-    }
 
-    @GetMapping("/classes")
-    public List<CarClass> getAllClasses() {
-        return carClassRepo.findAll();
-    }
+
+
 
 
     @PostMapping("/add-car")

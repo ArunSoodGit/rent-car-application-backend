@@ -17,6 +17,8 @@ public class Customer {
     private String address;
     @Column(name = "nazwa_miasta")
     private String cityName;
+    @Column(name = "Kraj")
+    private String country;
     @Column(name = "nr_telefonu_klienta")
     private int phoneNumber;
     @Column(name = "adres_email")
@@ -24,10 +26,18 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     Set<Rental> rentals;
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     public Customer() {
     }
 
-    public Customer(String driverLicenseNumber, String customerName, String customerSurname, String address, String cityName, int phoneNumber, String email) {
+    public Customer(String driverLicenseNumber, String customerName, String customerSurname, String address, String cityName, int phoneNumber, String email, String country) {
         this.driverLicenseNumber = driverLicenseNumber;
         this.customerName = customerName;
         this.customerSurname = customerSurname;
@@ -35,6 +45,7 @@ public class Customer {
         this.cityName = cityName;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.country = country;
     }
 
     public String getDriverLicenseNumber() {
