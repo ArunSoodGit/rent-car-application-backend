@@ -16,12 +16,12 @@ public class CarMarkModel {
     @Column(name = "model")
     private String model;
 
-    @OneToMany(mappedBy = "carMarkModel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "carMarkModel")
     private Set<Car> cars;
 
 
 
-    @ManyToOne
+    @ManyToOne()
     private CarClass carClass;
 
     public CarClass getCarClass() {

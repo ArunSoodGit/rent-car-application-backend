@@ -39,10 +39,10 @@ public class Car {
         this.imagePath = imagePath;
     }
 
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.ALL)
     private CarMarkModel carMarkModel;
 
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     Set<Rental> rentals;
 
     public String getRegistrationNumber() {

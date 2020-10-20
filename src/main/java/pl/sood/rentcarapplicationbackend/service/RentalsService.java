@@ -5,30 +5,23 @@ import org.springframework.stereotype.Service;
 import pl.sood.rentcarapplicationbackend.model.Car;
 import pl.sood.rentcarapplicationbackend.model.CarClass;
 import pl.sood.rentcarapplicationbackend.model.CarMarkModel;
-import pl.sood.rentcarapplicationbackend.repository.CarClassRepo;
-import pl.sood.rentcarapplicationbackend.repository.CarMarkModelRepo;
+import pl.sood.rentcarapplicationbackend.model.Rental;
 import pl.sood.rentcarapplicationbackend.repository.CarRepo;
+import pl.sood.rentcarapplicationbackend.repository.RentalRepo;
 
 @Service
-public class CarService {
+public class RentalsService {
 
-    private final CarRepo carRepo;
-
+    private final RentalRepo rentalRepo;
 
     @Autowired
-    public CarService(CarRepo carRepo) {
-
-        this.carRepo = carRepo;
-
+    public RentalsService(RentalRepo rentalRepo) {
+        this.rentalRepo = rentalRepo;
     }
 
-    public void addCar(Car car) {
+    public void addRental(Rental rental) {
 
-        carRepo.save(car);
 
-    }
 
-    public void delete(String vin) {
-        carRepo.deleteById(vin);
     }
 }

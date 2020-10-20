@@ -14,7 +14,7 @@ public class CarClass {
     private int deposit;
 
 
-    @OneToMany(mappedBy = "carClass",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "carClass")
     Set<CarMarkModel> carMarkModels;
 
     public CarClass(String className, int pricePerNight, int deposit) {

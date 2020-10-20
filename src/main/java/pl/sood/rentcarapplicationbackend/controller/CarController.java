@@ -36,28 +36,19 @@ public class CarController {
         return carRepo.findAll().stream().filter(car -> (car.getIsAvailable()).equals("dostępny")).collect(Collectors.toList());
     }
 
+    @PostMapping("/cars")
+    public void addCar(@RequestBody Car car) {
 
-
-
-
-
-    @PostMapping("/add-car")
-    public String addCar(@RequestBody Car car) {
-
-        carService.addCar(car);
-        return "test";
+       carService.addCar(car);
     }
 
-    @PutMapping("/update-car")
-    public String updateCar(@RequestBody Car car) {
+    @PutMapping("/cars")
+    public void updateCar(@RequestBody Car car) {
 
         carService.addCar(car);
-        return "test";
     }
-    @DeleteMapping("/delete-car/{vin}")
-    public String deleteCar(@PathVariable String vin) {
-
+    @DeleteMapping("/cars/{vin}")
+    public void deleteCar(@PathVariable String vin) {
         carService.delete(vin);
-        return "test";
     }
 }
