@@ -4,15 +4,15 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Wypożyczenie")
+@Table(name = "rental")
 public class Rental {
 
     @Id
-    @Column(name = "id_wypożyczenia")
+    @Column(name = "Rental_ID")
     private int id;
-    @Column(name = "data_wypożyczenia")
+    @Column(name = "Rental_Date")
     private Date rentalDate;
-    @Column(name = "data_zwrotu")
+    @Column(name = "Return_Date")
     private Date returnDate;
 
     @ManyToOne

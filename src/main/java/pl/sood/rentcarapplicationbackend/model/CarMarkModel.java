@@ -4,21 +4,20 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "marka_model")
+@Table(name = "mark_model")
 public class CarMarkModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_modelu")
+    @Column(name = "Model_ID")
     private int id;
-    @Column(name = "marka")
+    @Column(name = "Mark")
     private String mark;
-    @Column(name = "model")
+    @Column(name = "Model")
     private String model;
 
     @OneToMany(mappedBy = "carMarkModel")
     private Set<Car> cars;
-
 
 
     @ManyToOne()
@@ -27,6 +26,7 @@ public class CarMarkModel {
     public CarClass getCarClass() {
         return carClass;
     }
+
     public void setCarClass(CarClass carClass) {
         this.carClass = carClass;
     }

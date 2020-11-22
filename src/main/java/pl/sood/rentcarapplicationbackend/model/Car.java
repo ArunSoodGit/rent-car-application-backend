@@ -8,27 +8,27 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "Egzemplarz" )
+@Table(name = "vehicle" )
 public class Car {
 
     @Id
-    @Column(name = "vin")
+    @Column(name = "Vin")
     private String vin;
-    @Column(name = "nr_rejestracyjny")
+    @Column(name = "Registration_Number")
     private String registrationNumber;
-    @Column(name = "przebieg")
+    @Column(name = "Mileage")
     private int mileage;
-    @Column(name = "kolor")
+    @Column(name = "Color")
     private String color;
-    @Column(name = "pojemność_silnika")
+    @Column(name = "Engine_Capacity")
     private int engineCapacity;
-    @Column(name = "przegląd")
+    @Column(name = "Review")
     private String review;
-    @Column(name = "czy_dostępny")
+    @Column(name = "Is_Available")
     private String isAvailable;
-    @Column(name = "rok_produkcji")
+    @Column(name = "Date_Of_Production")
     private Date dateOfProduction;
-    @Column(name = "ścieżk_do_zdjęcia")
+    @Column(name = "Image_Path")
     private String imagePath;
 
     public String getImagePath() {

@@ -14,18 +14,13 @@ public class CarService {
 
     private final CarRepo carRepo;
 
-
     @Autowired
     public CarService(CarRepo carRepo) {
-
         this.carRepo = carRepo;
-
     }
 
     public void addCar(Car car) {
-
         carRepo.save(car);
-
     }
 
     public void delete(String vin) {

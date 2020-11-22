@@ -4,19 +4,19 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "Pracownik")
+@Table(name = "employee")
 public class Employee {
 
     @Id
-    @Column(name = "nr_pracownika")
+    @Column(name = "Employee_Number")
     private int employeeNumber;
-    @Column(name = "imię_pracownika")
+    @Column(name = "Employee_Name")
     private String employeeName;
-    @Column(name = "nazwisko_pracownika")
+    @Column(name = "Employee_Surname")
     private String employeeSurname;
-    @Column(name = "pensja")
+    @Column(name = "Salary")
     private int salary;
-    @Column(name = "nr_telefonu")
+    @Column(name = "Phone_Number")
     private int phoneNumber;
     @OneToMany(mappedBy = "employee")
     Set<Rental> rentals;

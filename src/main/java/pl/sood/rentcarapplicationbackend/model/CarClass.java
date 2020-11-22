@@ -4,13 +4,17 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "klasa")
+@Table(name = "class")
 public class CarClass {
 
     @Id
-    @Column(name = "nazwa_klasy")
+    @Column(name = "Class_Name")
     private String className;
+    @Column(name = "Price_Per_Night")
+
     private int pricePerNight;
+    @Column(name = "Deposit")
+
     private int deposit;
 
 

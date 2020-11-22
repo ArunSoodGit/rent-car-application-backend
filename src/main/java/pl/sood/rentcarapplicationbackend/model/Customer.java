@@ -4,24 +4,24 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "klient")
+@Table(name = "customer")
 public class Customer {
     @Id
-    @Column(name = "nr_prawa_jazdy")
+    @Column(name = "Driver_License_Number")
     private String driverLicenseNumber;
-    @Column(name = "imię_klienta")
+    @Column(name = "Customer_Name")
     private String customerName;
-    @Column(name = "nazwisko_klienta")
+    @Column(name = "Customer_Surname")
     private String customerSurname;
-    @Column(name = "adres_zamieszkania")
+    @Column(name = "Address")
     private String address;
-    @Column(name = "nazwa_miasta")
+    @Column(name = "City_name")
     private String cityName;
-    @Column(name = "Kraj")
+    @Column(name = "Country")
     private String country;
-    @Column(name = "nr_telefonu_klienta")
+    @Column(name = "Phone_Number")
     private int phoneNumber;
-    @Column(name = "adres_email")
+    @Column(name = "Email")
     private String email;
     @OneToMany(mappedBy = "customer")
     Set<Rental> rentals;
