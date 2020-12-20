@@ -15,8 +15,9 @@ public class CustomerService {
         this.customerRepo = customerRepo;
     }
 
-    public void addCustomer(Customer customer) {
-        customerRepo.save(customer);
+    public void addCustomer(Customer customer) {customerRepo.save(customer);
     }
 
+    public void deleteCustomer(String driverLicenseNumber) {customerRepo.deleteById(driverLicenseNumber);
+    }
 }

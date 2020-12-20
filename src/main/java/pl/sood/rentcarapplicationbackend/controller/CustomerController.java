@@ -3,7 +3,6 @@ package pl.sood.rentcarapplicationbackend.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.sood.rentcarapplicationbackend.model.Car;
 import pl.sood.rentcarapplicationbackend.model.Customer;
 import pl.sood.rentcarapplicationbackend.repository.CustomerRepo;
 import pl.sood.rentcarapplicationbackend.service.CustomerService;
@@ -24,9 +23,24 @@ public class CustomerController {
         return customerRepo.findAll();
     }
 
+    @GetMapping("/customers/{driverLicenseNumber}")
+    public Customer getCustomerByDriverLicenseNumber(@PathVariable String driverLicenseNumber) {
+        return customerRepo.findById(driverLicenseNumber).orElseThrow(RuntimeException::new);
+    }
+
     @PostMapping("/customers")
     public void addCustomer(@RequestBody Customer customer) {
-      customerService.addCustomer(customer);
+        customerService.addCustomer(customer);
+    }
+
+    @PutMapping("/customers")
+    public void updateCar(@RequestBody Customer customer) {
+        customerService.addCustomer(customer);
+    }
+
+    @DeleteMapping("/customers/{driverLicenseNumber}")
+    public void deleteCar(@PathVariable String driverLicenseNumber) {
+        customerService.deleteCustomer(driverLicenseNumber);
     }
 
 }

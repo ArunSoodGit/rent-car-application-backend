@@ -9,7 +9,7 @@ public class Employee {
 
     @Id
     @Column(name = "Employee_Number")
-    private int employeeNumber;
+    private long employeeNumber;
     @Column(name = "Employee_Name")
     private String employeeName;
     @Column(name = "Employee_Surname")
@@ -21,6 +21,19 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     Set<Rental> rentals;
 
+    @OneToOne
+    @MapsId
+    private AppUser appUser;
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
+
     public Employee() {
     }
 
@@ -31,11 +44,11 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getEmployeeNumber() {
+    public Long getEmployeeNumber() {
         return employeeNumber;
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
+    public void setEmployeeNumber(Long employeeNumber) {
         this.employeeNumber = employeeNumber;
     }
 

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pl.sood.rentcarapplicationbackend.model.Employee;
 
 @Repository
-public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
+public interface EmployeeRepo extends JpaRepository<Employee, Long> {
 }

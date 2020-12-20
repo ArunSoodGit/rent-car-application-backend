@@ -20,8 +20,7 @@ public class RentalsService {
     }
 
     public void addRental(Rental rental) {
-
-
+        rentalRepo.save(rental);
 
     }
 }
