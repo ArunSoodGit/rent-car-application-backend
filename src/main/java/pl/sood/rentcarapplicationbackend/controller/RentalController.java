@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.sood.rentcarapplicationbackend.model.Car;
+import pl.sood.rentcarapplicationbackend.model.Customer;
 import pl.sood.rentcarapplicationbackend.model.Employee;
 import pl.sood.rentcarapplicationbackend.model.Rental;
 import pl.sood.rentcarapplicationbackend.repository.*;
@@ -26,6 +27,11 @@ public class RentalController {
     @GetMapping("/rentals")
     public List<Rental> getAllRentals(){
         return rentalRepo.findAll();
+    }
+
+    @GetMapping("/rentals/{id}")
+    public Rental getRentalById(@PathVariable int id) {
+        return rentalRepo.findById(id).orElseThrow(RuntimeException::new);
     }
 
     @PostMapping("/rentals")

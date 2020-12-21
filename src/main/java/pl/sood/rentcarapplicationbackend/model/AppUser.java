@@ -18,10 +18,19 @@ public class AppUser implements UserDetails {
     private String username;
     private String password;
     private String role;
+    @OneToOne
+    @JoinColumn(name = "employee_number")
+    private Employee employee;
 
+    public Employee getEmployee() {
+        return employee;
+    }
 
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 
-    public AppUser(String username, String password, String role ) {
+    public AppUser(String username, String password, String role) {
 
         this.id = id;
         this.username = username;

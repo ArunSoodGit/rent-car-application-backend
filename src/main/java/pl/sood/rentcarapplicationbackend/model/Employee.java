@@ -21,8 +21,7 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     Set<Rental> rentals;
 
-    @OneToOne
-    @MapsId
+    @OneToOne(cascade=CascadeType.PERSIST, mappedBy = "employee")
     private AppUser appUser;
 
     public AppUser getAppUser() {
