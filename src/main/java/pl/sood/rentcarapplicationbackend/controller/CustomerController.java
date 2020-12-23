@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.sood.rentcarapplicationbackend.model.Customer;
+import pl.sood.rentcarapplicationbackend.model.Rental;
 import pl.sood.rentcarapplicationbackend.repository.CustomerRepo;
+import pl.sood.rentcarapplicationbackend.repository.RentalRepo;
 import pl.sood.rentcarapplicationbackend.service.CustomerService;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerRepo customerRepo;
+    private final RentalRepo rentalRepo;
     private final CustomerService customerService;
 
 
@@ -41,6 +44,12 @@ public class CustomerController {
     @DeleteMapping("/customers/{driverLicenseNumber}")
     public void deleteCar(@PathVariable String driverLicenseNumber) {
         customerService.deleteCustomer(driverLicenseNumber);
+    }
+
+    @PostMapping("/customers/rentals")
+    public List<Rental> getAllRentalsForCustomer(@RequestBody Customer customer){
+
+        return rentalRepo.findAllByCustomer(customer);
     }
 
 }

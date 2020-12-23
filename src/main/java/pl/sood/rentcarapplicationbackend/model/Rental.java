@@ -15,6 +15,16 @@ public class Rental {
     @Column(name = "Return_Date")
     private Date returnDate;
 
+    public double getRentalCost() {
+        return rentalCost;
+    }
+
+    public void setRentalCost(double rentalCost) {
+        this.rentalCost = rentalCost;
+    }
+
+    @Column(name = "Rental_Cost")
+    private double rentalCost;
     @ManyToOne
     private Car car;
     @ManyToOne

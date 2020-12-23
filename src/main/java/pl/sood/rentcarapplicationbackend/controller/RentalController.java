@@ -29,6 +29,8 @@ public class RentalController {
         return rentalRepo.findAll();
     }
 
+
+
     @GetMapping("/rentals/{id}")
     public Rental getRentalById(@PathVariable int id) {
         return rentalRepo.findById(id).orElseThrow(RuntimeException::new);
