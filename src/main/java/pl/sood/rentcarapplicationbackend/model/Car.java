@@ -2,6 +2,8 @@ package pl.sood.rentcarapplicationbackend.model;
 
 
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
@@ -23,9 +25,10 @@ public class Car {
     @Column(name = "Engine_Capacity")
     private int engineCapacity;
     @Column(name = "Review")
-    private String review;
+    private Date review;
+    @Type(type="yes_no")
     @Column(name = "Is_Available")
-    private String isAvailable;
+    private Boolean isAvailable;
     @Column(name = "Date_Of_Production")
     private Date dateOfProduction;
     @Column(name = "Image_Path")
@@ -68,7 +71,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(String vin, String registrationNumber, int mileage, String color, int engineCapacity, String review, String isAvailable, Date dateOfProduction, String imagePath) {
+    public Car(String vin, String registrationNumber, int mileage, String color, int engineCapacity, Date review, boolean isAvailable, Date dateOfProduction, String imagePath) {
         this.vin = vin;
         this.mileage = mileage;
         this.color = color;
@@ -128,19 +131,19 @@ public class Car {
         this.engineCapacity = engineCapacity;
     }
 
-    public String getReview() {
+    public Date getReview() {
         return review;
     }
 
-    public void setReview(String review) {
+    public void setReview(Date review) {
         this.review = review;
     }
 
-    public String getIsAvailable() {
+    public boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setIsAvailable(String isAvailable) {
+    public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
 

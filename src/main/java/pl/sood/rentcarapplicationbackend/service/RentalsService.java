@@ -23,4 +23,8 @@ public class RentalsService {
         rentalRepo.save(rental);
 
     }
+    public void deleteRental(int id) {
+        rentalRepo.deleteById(id);
+
+    }
 }

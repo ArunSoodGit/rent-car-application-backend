@@ -22,13 +22,13 @@ public class RentalController {
 
     private final RentalRepo rentalRepo;
     private final EmployeeRepo employeeRepo;
+    private final CarRepo carRepo;
     private final RentalsService rentalsService;
 
     @GetMapping("/rentals")
-    public List<Rental> getAllRentals(){
+    public List<Rental> getAllRentals() {
         return rentalRepo.findAll();
     }
-
 
 
     @GetMapping("/rentals/{id}")
@@ -38,8 +38,19 @@ public class RentalController {
 
     @PostMapping("/rentals")
     public void addRental(@RequestBody Rental rental) throws Exception {
-        Employee employee = employeeRepo.findById(1L).orElseThrow(() -> new Exception());
+        Employee employee = employeeRepo.findById(1L).orElseThrow(Exception::new);
+        Car car = carRepo.findById(rental.getCar().getVin()).orElseThrow(Exception::new);
         rental.setEmployee(employee);
-        rentalsService.addRental(rental);}
+        car.setIsAvailable(false);
+        carRepo.save(car);
+        rentalsService.addRental(rental);
+    }
+
+    @DeleteMapping("/rentals/{id}")
+    public void deleteRental(@PathVariable int id) {
+        rentalsService.deleteRental(id);
+    }
+
+
 
 }
