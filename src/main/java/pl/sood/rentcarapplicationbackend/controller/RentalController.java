@@ -47,7 +47,11 @@ public class RentalController {
     }
 
     @DeleteMapping("/rentals/{id}")
-    public void deleteRental(@PathVariable int id) {
+    public void deleteRental(@PathVariable int id) throws Exception {
+        Rental rental = rentalRepo.findById(id).orElseThrow(Exception::new);
+        Car car = carRepo.findById(rental.getCar().getVin()).orElseThrow(Exception::new);
+        car.setIsAvailable(true);
+        carRepo.save(car);
         rentalsService.deleteRental(id);
     }
 
