@@ -7,7 +7,9 @@ import pl.sood.rentcarapplicationbackend.model.File;
 import pl.sood.rentcarapplicationbackend.repository.FileRepo;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -25,11 +27,11 @@ public class FileStorageService {
         return fileRepo.save(File);
     }
 
-    public File getFile(String id) {
-        return fileRepo.findById(id).get();
+    public Optional<File> getFile(String id) {
+        return fileRepo.findById(id);
     }
 
-    public Stream<File> getAllFiles() {
-        return fileRepo.findAll().stream();
+    public List<File> getAllFiles() {
+        return fileRepo.findAll();
     }
 }

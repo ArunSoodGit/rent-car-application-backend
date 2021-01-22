@@ -2,13 +2,18 @@ package pl.sood.rentcarapplicationbackend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.sood.rentcarapplicationbackend.model.File;
 import pl.sood.rentcarapplicationbackend.service.FileStorageService;
 
+
 import java.io.IOException;
-import java.util.stream.Stream;
+import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -18,10 +23,23 @@ public class FileController {
 
     @PostMapping("/files")
     public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-            storageService.store(file);
+        storageService.store(file);
     }
+
     @GetMapping("/files")
-    public Stream<File> getFiles() throws IOException {
+    public List<File> getFiles() throws IOException {
         return storageService.getAllFiles();
+    }
+
+    @GetMapping("/files/{fileId}")
+    public ResponseEntity<ByteArrayResource> getFile(@PathVariable String fileId) {
+
+        File file = storageService.getFile(fileId).get();
+        HttpHeaders headers = new HttpHeaders();
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new ByteArrayResource(file.getData()));
     }
 }
