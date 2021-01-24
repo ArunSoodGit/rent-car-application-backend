@@ -5,9 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.sood.rentcarapplicationbackend.model.Car;
+import pl.sood.rentcarapplicationbackend.model.Customer;
+import pl.sood.rentcarapplicationbackend.model.Rental;
 import pl.sood.rentcarapplicationbackend.repository.CarRepo;
+import pl.sood.rentcarapplicationbackend.repository.RentalRepo;
 import pl.sood.rentcarapplicationbackend.service.CarService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -17,7 +21,7 @@ import java.util.List;
 public class CarController {
 
     private final CarRepo carRepo;
-
+    private final RentalRepo rentalRepo;
     private final CarService carService;
 
 
@@ -44,5 +48,12 @@ public class CarController {
     @DeleteMapping("/cars/{vin}")
     public void deleteCar(@PathVariable String vin) {
         carService.delete(vin);
+    }
+
+    @PostMapping("/cars/rentals")
+    public List<Rental> getAllRentalsForCustomer(@RequestBody Car car) {
+
+            return rentalRepo.findAllByCar(car);
+
     }
 }

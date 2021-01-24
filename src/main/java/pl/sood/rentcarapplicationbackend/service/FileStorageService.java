@@ -4,30 +4,36 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import pl.sood.rentcarapplicationbackend.model.File;
+import pl.sood.rentcarapplicationbackend.model.Rental;
 import pl.sood.rentcarapplicationbackend.repository.FileRepo;
+import pl.sood.rentcarapplicationbackend.repository.RentalRepo;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Service
 public class FileStorageService {
     private final FileRepo fileRepo;
+    private final RentalRepo rentalRepo;
 
-    public FileStorageService(FileRepo fileRepo) {
+    public FileStorageService(FileRepo fileRepo, RentalRepo rentalRepo) {
         this.fileRepo = fileRepo;
+        this.rentalRepo = rentalRepo;
     }
 
-    public File store(MultipartFile file) throws IOException, IOException {
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
-        File File = new File(fileName, file.getContentType(), file.getBytes());
+    public File store(MultipartFile multipartFile) throws IOException, IOException {
+        String fileName = "Umowa_najmu_" + StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        Optional<Rental> rental = rentalRepo.findById(Integer.valueOf(multipartFile.getOriginalFilename()));
+        File file = new File(fileName, multipartFile.getContentType(), multipartFile.getBytes());
+        rental.ifPresent(file::setRental);
 
-        return fileRepo.save(File);
+
+        return fileRepo.save(file);
     }
 
-    public Optional<File> getFile(String id) {
+    public Optional<File> getFile(Long id) {
         return fileRepo.findById(id);
     }
 

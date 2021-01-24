@@ -9,9 +9,8 @@ import javax.persistence.*;
 public class File {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
 
@@ -20,6 +19,9 @@ public class File {
     @Lob
     private byte[] data;
 
+    @ManyToOne
+    private Rental rental;
+
     public File() {
     }
 
@@ -27,9 +29,21 @@ public class File {
         this.name = name;
         this.type = type;
         this.data = data;
+
     }
 
-    public String getId() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Rental getRental() {
+        return rental;
+    }
+
+    public void setRental(Rental rental) {
+        this.rental = rental;
+    }
+    public Long getId() {
         return id;
     }
 

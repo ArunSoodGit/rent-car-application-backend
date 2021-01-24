@@ -32,7 +32,7 @@ public class FileController {
     }
 
     @GetMapping("/files/{fileId}")
-    public ResponseEntity<ByteArrayResource> getFile(@PathVariable String fileId) {
+    public ResponseEntity<ByteArrayResource> getFile(@PathVariable Long fileId) {
 
         File file = storageService.getFile(fileId).get();
         HttpHeaders headers = new HttpHeaders();

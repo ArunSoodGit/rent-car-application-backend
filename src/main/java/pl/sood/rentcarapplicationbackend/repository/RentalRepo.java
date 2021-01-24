@@ -2,6 +2,7 @@ package pl.sood.rentcarapplicationbackend.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import pl.sood.rentcarapplicationbackend.model.Car;
 import pl.sood.rentcarapplicationbackend.model.Customer;
 import pl.sood.rentcarapplicationbackend.model.Rental;
 
@@ -12,4 +13,6 @@ public interface RentalRepo extends JpaRepository<Rental,Integer> {
 
 
     List<Rental> findAllByCustomer(Customer customer);
+
+    List<Rental> findAllByCar(Car car);
 }

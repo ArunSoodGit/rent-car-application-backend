@@ -2,18 +2,30 @@ package pl.sood.rentcarapplicationbackend.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "rental")
 public class Rental {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Rental_ID")
     private int id;
     @Column(name = "Rental_Date")
     private Date rentalDate;
     @Column(name = "Return_Date")
     private Date returnDate;
+    @Column(name = "Status")
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public double getRentalCost() {
         return rentalCost;
@@ -31,6 +43,10 @@ public class Rental {
     private Employee employee;
     @ManyToOne
     private Customer customer;
+
+    @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
+    Set<File> files;
+
 
     public Customer getCustomer() {
         return customer;
