@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.sood.rentcarapplicationbackend.model.File;
-import pl.sood.rentcarapplicationbackend.service.FileStorageService;
+import pl.sood.rentcarapplicationbackend.service.FileService;
 
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class FileController {
-    private final FileStorageService storageService;
+    private final FileService storageService;
 
     @PostMapping("/files")
     public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
@@ -42,4 +42,10 @@ public class FileController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new ByteArrayResource(file.getData()));
     }
+
+    @GetMapping("/rentals/{rentalId}/files")
+    public List<File> getFilesByRental(@PathVariable int rentalId) {
+        return storageService.getFiles(rentalId);
+    }
+
 }

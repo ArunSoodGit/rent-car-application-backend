@@ -46,10 +46,5 @@ public class CustomerController {
         customerService.deleteCustomer(driverLicenseNumber);
     }
 
-    @PostMapping("/customers/rentals")
-    public List<Rental> getAllRentalsForCustomer(@RequestBody Customer customer){
-
-        return rentalRepo.findAllByCustomer(customer);
-    }
 
 }

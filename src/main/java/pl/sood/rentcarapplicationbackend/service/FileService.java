@@ -14,11 +14,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class FileStorageService {
+public class FileService {
     private final FileRepo fileRepo;
     private final RentalRepo rentalRepo;
 
-    public FileStorageService(FileRepo fileRepo, RentalRepo rentalRepo) {
+    public FileService(FileRepo fileRepo, RentalRepo rentalRepo) {
         this.fileRepo = fileRepo;
         this.rentalRepo = rentalRepo;
     }
@@ -35,6 +35,9 @@ public class FileStorageService {
 
     public Optional<File> getFile(Long id) {
         return fileRepo.findById(id);
+    }
+    public List<File> getFiles(int rentalId) {
+        return fileRepo.findAllByRentalId(rentalId);
     }
 
     public List<File> getAllFiles() {
