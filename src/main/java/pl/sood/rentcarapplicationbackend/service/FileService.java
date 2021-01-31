@@ -43,4 +43,7 @@ public class FileService {
     public List<File> getAllFiles() {
         return fileRepo.findAll();
     }
+    public void delete(Long id){
+        fileRepo.deleteById(id);
+    }
 }

@@ -19,22 +19,22 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class FileController {
-    private final FileService storageService;
+    private final FileService fileService;
 
     @PostMapping("/files")
     public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-        storageService.store(file);
+        fileService.store(file);
     }
 
     @GetMapping("/files")
     public List<File> getFiles() throws IOException {
-        return storageService.getAllFiles();
+        return fileService.getAllFiles();
     }
 
     @GetMapping("/files/{fileId}")
     public ResponseEntity<ByteArrayResource> getFile(@PathVariable Long fileId) {
 
-        File file = storageService.getFile(fileId).get();
+        File file = fileService.getFile(fileId).get();
         HttpHeaders headers = new HttpHeaders();
 
         return ResponseEntity.ok()
@@ -45,7 +45,14 @@ public class FileController {
 
     @GetMapping("/rentals/{rentalId}/files")
     public List<File> getFilesByRental(@PathVariable int rentalId) {
-        return storageService.getFiles(rentalId);
+        return fileService.getFiles(rentalId);
+    }
+
+    @DeleteMapping("/files/{id}")
+    public void deleteFile(@PathVariable Long id) throws Exception {
+
+
+        fileService.delete(id);
     }
 
 }

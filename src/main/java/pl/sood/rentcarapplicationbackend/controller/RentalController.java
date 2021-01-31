@@ -71,5 +71,8 @@ public class RentalController {
         rentalsService.deleteRental(id);
     }
 
-
+    @PutMapping("/rentals")
+    public void updateCar(@RequestBody Rental rental) {
+        rentalsService.addRental(rental);
+    }
 }
