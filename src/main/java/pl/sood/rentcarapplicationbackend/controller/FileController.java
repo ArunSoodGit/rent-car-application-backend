@@ -27,7 +27,7 @@ public class FileController {
     }
 
     @GetMapping("/files")
-    public List<File> getFiles() throws IOException {
+    public List<File> getFiles() {
         return fileService.getAllFiles();
     }
 
@@ -49,9 +49,7 @@ public class FileController {
     }
 
     @DeleteMapping("/files/{id}")
-    public void deleteFile(@PathVariable Long id) throws Exception {
-
-
+    public void deleteFile(@PathVariable Long id) {
         fileService.delete(id);
     }
 

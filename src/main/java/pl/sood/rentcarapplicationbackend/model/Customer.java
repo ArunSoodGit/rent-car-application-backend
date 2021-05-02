@@ -23,7 +23,7 @@ public class Customer {
     private int phoneNumber;
     @Column(name = "Email")
     private String email;
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     Set<Rental> rentals;
 
     public String getCountry() {

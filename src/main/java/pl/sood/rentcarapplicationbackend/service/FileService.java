@@ -23,19 +23,18 @@ public class FileService {
         this.rentalRepo = rentalRepo;
     }
 
-    public File store(MultipartFile multipartFile) throws IOException, IOException {
+    public void store(MultipartFile multipartFile) throws IOException {
         String fileName = "Umowa_najmu_" + StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
         Optional<Rental> rental = rentalRepo.findById(Integer.valueOf(multipartFile.getOriginalFilename()));
         File file = new File(fileName, multipartFile.getContentType(), multipartFile.getBytes());
         rental.ifPresent(file::setRental);
-
-
-        return fileRepo.save(file);
+        fileRepo.save(file);
     }
 
     public Optional<File> getFile(Long id) {
         return fileRepo.findById(id);
     }
+
     public List<File> getFiles(int rentalId) {
         return fileRepo.findAllByRentalId(rentalId);
     }
@@ -43,7 +42,8 @@ public class FileService {
     public List<File> getAllFiles() {
         return fileRepo.findAll();
     }
-    public void delete(Long id){
+
+    public void delete(Long id) {
         fileRepo.deleteById(id);
     }
 }
